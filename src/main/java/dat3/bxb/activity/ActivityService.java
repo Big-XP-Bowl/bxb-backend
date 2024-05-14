@@ -19,8 +19,19 @@ public class ActivityService {
     public List<ActivityDTO> getAllActivities(){
         List<Activity> activities = activityRepository.findAll();
         return activities.stream().map(this::convertToDTO).collect(Collectors.toList());
-
     }
+
+    public ActivityDTO getActivityById(int id) {
+        Activity activity = activityRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Activity not found with ID: " + id));
+        return convertToDTO(activity);
+    }
+
+    public List<ActivityDTO> getActivitiesByType(String activityType) {
+        List<Activity> activities = activityRepository.findByType(activityType);
+        return activities.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
     public ActivityDTO convertToDTO(Activity activity) {
         ActivityDTO activityDTO = new ActivityDTO();
         activityDTO.setId(activity.getId());
@@ -37,10 +48,8 @@ public class ActivityService {
         } else if (activity instanceof BowlingLane) {
             activityDTO.setType("BowlingLane");
             activityDTO.setLaneNumber(((BowlingLane) activity).getLaneNumber());
-        } else {
-            // Handle other types of activities here if necessary
         }
 
         return activityDTO;
     }
-    }
+}

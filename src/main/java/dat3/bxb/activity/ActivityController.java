@@ -2,13 +2,14 @@ package dat3.bxb.activity;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/activity")
+@RequestMapping("/activities")
 public class ActivityController {
     private final ActivityService activityService;
 
@@ -20,4 +21,17 @@ public class ActivityController {
     public List<ActivityDTO > getAllActivities() {
         return activityService.getAllActivities();
     }
+
+    @GetMapping("id/{id}")
+    public ActivityDTO getActivityById(@PathVariable int id) {
+        return activityService.getActivityById(id);
+    }
+
+    @GetMapping("/{activityType}")
+    public List<ActivityDTO> getActivitiesByType(@PathVariable String activityType) {
+        return activityService.getActivitiesByType(activityType);
+    }
 }
+
+
+
