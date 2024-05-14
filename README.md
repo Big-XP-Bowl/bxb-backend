@@ -1,4 +1,4 @@
-[![Build and deploy JAR app to Azure Web App - bxb-backend](https://github.com/Big-XP-Bowl/bxb-backend/actions/workflows/main_bxb-backend.yml/badge.svg)](https://github.com/Big-XP-Bowl/bxb-backend/actions/workflows/main_bxb-backend.yml)
+[![Build and deploy JAR app to Azure Web App - bxb-backend](https://github.com/Big-XP-Bowl/bxb-backend/actions/workflows/main_bxb-backend.yml/badge.svg?branch=main)](https://github.com/Big-XP-Bowl/bxb-backend/actions/workflows/main_bxb-backend.yml)
 
 # BXB BACKEND
 
