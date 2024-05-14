@@ -31,9 +31,16 @@ public class ActivityService {
         activityDTO.setIsReserved(activity.isReserved());
 
         // Check if the activity is Airhockey or BowlingLane and set additional fields accordingly
-        activityDTO.setType("Airhockey");
-        activityDTO.setTableNumber(((Airhockey) activity).getTableNumber());
+        if (activity instanceof Airhockey) {
+            activityDTO.setType("Airhockey");
+            activityDTO.setTableNumber(((Airhockey) activity).getTableNumber());
+        } else if (activity instanceof BowlingLane) {
+            activityDTO.setType("BowlingLane");
+            activityDTO.setLaneNumber(((BowlingLane) activity).getLaneNumber());
+        } else {
+            // Handle other types of activities here if necessary
+        }
 
         return activityDTO;
     }
-}
+    }

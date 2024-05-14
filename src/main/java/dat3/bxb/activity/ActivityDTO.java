@@ -6,15 +6,15 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ActivityDTO {
-    int id;
-    String name;
-    int capacity;
-    boolean isReserved;
-    int duration;
-    boolean isClosed;
-    int laneNumber;
-    int tableNumber;
-    String type;
+    private int id;
+    private String name;
+    private int capacity;
+    private int duration;
+    private boolean isClosed;
+    private boolean isReserved;
+    private String type;
+    private int tableNumber;
+    private int laneNumber;
 
     public void setIsClosed(boolean closed) {
     }
