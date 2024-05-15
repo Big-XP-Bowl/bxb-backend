@@ -22,7 +22,7 @@ public class ActivityController {
         return activityService.getAllActivities();
     }
 
-    @GetMapping("id/{id}")
+    @GetMapping("/{id}")
     public ActivityDTO getActivityById(@PathVariable int id) {
         return activityService.getActivityById(id);
     }

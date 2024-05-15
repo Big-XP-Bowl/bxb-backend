@@ -96,7 +96,7 @@ public class InitData implements CommandLineRunner {
 
             String username1 = "user1";
 
-            UserWithRoles userWithRoles1 = userWithRolesRepository.findByUsername(username1);
+            UserWithRoles userWithRoles = userWithRolesRepository.findByUsername(username1);
 
             LocalDateTime startTime = LocalDateTime.of(2021, 12, 24, 12, 0); // Example start time
             LocalDateTime startTime1 = LocalDateTime.of(2021, 12, 24, 13, 0);
@@ -111,16 +111,16 @@ public class InitData implements CommandLineRunner {
             LocalDateTime startTime10 = LocalDateTime.of(2021, 12, 24, 22, 0);
 
 
-            Reservation reservation1 = new Reservation(activity, startTime, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation2 = new Reservation(activity, startTime1, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation3 = new Reservation(activity, startTime2, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation4 = new Reservation(activity, startTime3, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation5 = new Reservation(activity1, startTime4, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation6 = new Reservation(activity1, startTime5, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation7 = new Reservation(activity1, startTime6, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation8 = new Reservation(activity1, startTime7, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation9 = new Reservation(activity1, startTime8, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
-            Reservation reservation10 = new Reservation(activity1, startTime9, 1, userWithRoles1, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation1 = new Reservation(activity, startTime, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation2 = new Reservation(activity, startTime1, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation3 = new Reservation(activity, startTime2, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation4 = new Reservation(activity, startTime3, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation5 = new Reservation(activity1, startTime4, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation6 = new Reservation(activity1, startTime5, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation7 = new Reservation(activity1, startTime6, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation8 = new Reservation(activity1, startTime7, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation9 = new Reservation(activity1, startTime8, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
+            Reservation reservation10 = new Reservation(activity1, startTime9, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now());
 
             reservationRepository.saveAll(List.of(reservation1 , reservation2, reservation3, reservation4, reservation5, reservation6, reservation7, reservation8, reservation9, reservation10));
         }

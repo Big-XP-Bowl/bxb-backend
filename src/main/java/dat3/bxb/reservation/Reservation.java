@@ -54,4 +54,13 @@ public class Reservation {
 
     public Reservation() {
     }
+
+    public Reservation(LocalDateTime startTime, int partySize, String customerName, String customerPhone, LocalDateTime created, LocalDateTime edited) {
+        this.startTime = startTime;
+        this.partySize = partySize;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.created = created;
+        this.edited = edited;
+    }
 }
