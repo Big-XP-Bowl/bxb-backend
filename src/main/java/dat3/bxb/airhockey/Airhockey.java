@@ -9,12 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Airhockey extends Activity {
-    private int TableNumber;
+    private int tableNumber;
 
 
     public Airhockey(String name, int capacity, boolean isReserved, int duration, boolean isClosed, int TableNumber) {
         super(name, capacity, isReserved, duration, isClosed);
-        this.TableNumber = TableNumber;
+        this.tableNumber = TableNumber;
     }
     public Airhockey(){}
 }
