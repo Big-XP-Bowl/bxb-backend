@@ -4,6 +4,8 @@ import dat3.bxb.airhockey.Airhockey;
 import dat3.bxb.airhockey.AirhockeyRepository;
 import dat3.bxb.bowlinglane.BowlingLane;
 import dat3.bxb.bowlinglane.BowlingLaneRepository;
+import dat3.bxb.product.Product;
+import dat3.bxb.product.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +17,13 @@ import java.util.Set;
 public class InitData implements CommandLineRunner {
     private final AirhockeyRepository airhockeyRepository;
     private final BowlingLaneRepository bowlingLaneRepository;
+    private final ProductRepository productRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ProductRepository productRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
+        this.productRepository = productRepository;
+
     }
 
     @Override
@@ -26,6 +31,7 @@ public class InitData implements CommandLineRunner {
             System.out.println("Hello from InitData");
             createAirhockeyTables();
             createBowlingLanes();
+            createProducts();
         }
         public void createAirhockeyTables() {
             System.out.println("Creating Airhockey tables");
@@ -74,4 +80,25 @@ public class InitData implements CommandLineRunner {
             bowlingLaneRepository.saveAll(List.of(bowlingLane1, bowlingLane2, bowlingLane3, bowlingLane4, bowlingLane5, bowlingLane6, bowlingLane7, bowlingLane8, bowlingLane9, bowlingLane10, bowlingLane11, bowlingLane12, bowlingLane13, bowlingLane14, bowlingLane15, bowlingLane16, bowlingLane17, bowlingLane18, bowlingLane19, bowlingLane20, bowlingLane21, bowlingLane22, bowlingLane23, bowlingLane24));
 
         }
+
+    public void createProducts() {
+        System.out.println("Creating Products");
+        Set<Product> existingProducts = new HashSet<>();
+        existingProducts.addAll(productRepository.findAll());
+
+        Product product1 = new Product(Product.Category.DRINK, "https://images.pexels.com/photos/7429792/pexels-photo-7429792.jpeg", 25.0, "Coca Cola");
+        Product product2 = new Product(Product.Category.DRINK, "https://images.pexels.com/photos/6223375/pexels-photo-6223375.jpeg", 45.0, "Øl");
+        Product product3 = new Product(Product.Category.DRINK, "https://c.pxhere.com/images/cf/9a/2996322f6e4e1c49c8bdaf67f459-1434971.jpg!d", 20.0, "Mineralvand");
+        Product product4 = new Product(Product.Category.SNACK, "https://live.staticflickr.com/1552/25301746624_8752d4bd1c_b.jpg", 15.0, "Kartoffelchips");
+        Product product5 = new Product(Product.Category.SNACK, "https://images.pexels.com/photos/7234396/pexels-photo-7234396.jpeg", 10.0, "Popcorn");
+        Product product6 = new Product(Product.Category.DRINK, "https://images.pexels.com/photos/8679343/pexels-photo-8679343.jpeg", 30.0, "Appelsinjuice");
+        Product product7 = new Product(Product.Category.SNACK, "https://images.pexels.com/photos/5472169/pexels-photo-5472169.jpeg", 20.0, "Nødder");
+        Product product8 = new Product(Product.Category.SNACK, "https://images.pexels.com/photos/5744302/pexels-photo-5744302.jpeg", 15.0, "Slik");
+        Product product9 = new Product(Product.Category.DRINK, "https://live.staticflickr.com/4392/35968783350_547823ebf1_b.jpg", 60.0, "Rødvin");
+        Product product10 = new Product(Product.Category.DRINK, "https://images.pexels.com/photos/107556/pexels-photo-107556.jpeg", 60.0, "Hvidvin");
+        Product product11 = new Product(Product.Category.DRINK, "https://c.pxhere.com/photos/81/f9/cup_of_coffee_coffee_beans-617211.jpg!d", 20.0, "Kaffe");
+        Product product12 = new Product(Product.Category.DRINK, "https://www.oplevbyen.dk/wp-content/uploads/2018/01/22555104_1892488500769067_7614522938237404698_n-777x437.jpg", 15.0, "Te");
+
+        productRepository.saveAll(List.of(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12));
+    }
 }
