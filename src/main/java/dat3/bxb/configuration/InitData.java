@@ -4,6 +4,8 @@ import dat3.bxb.airhockey.Airhockey;
 import dat3.bxb.airhockey.AirhockeyRepository;
 import dat3.bxb.bowlinglane.BowlingLane;
 import dat3.bxb.bowlinglane.BowlingLaneRepository;
+import dat3.bxb.diningtable.DiningTable;
+import dat3.bxb.diningtable.DiningTableRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +17,12 @@ import java.util.Set;
 public class InitData implements CommandLineRunner {
     private final AirhockeyRepository airhockeyRepository;
     private final BowlingLaneRepository bowlingLaneRepository;
+    private final DiningTableRepository diningTableRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, DiningTableRepository diningTableRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
+        this.diningTableRepository = diningTableRepository;
     }
 
     @Override
@@ -26,11 +30,12 @@ public class InitData implements CommandLineRunner {
             System.out.println("Hello from InitData");
             createAirhockeyTables();
             createBowlingLanes();
+            createDiningTables();
         }
         public void createAirhockeyTables() {
             System.out.println("Creating Airhockey tables");
-            Set<Airhockey> exsistingAirhockeyTables = new HashSet<>();
-            exsistingAirhockeyTables.addAll(airhockeyRepository.findAll());
+            Set<Airhockey> existingAirhockeyTables = new HashSet<>();
+            existingAirhockeyTables.addAll(airhockeyRepository.findAll());
 
             Airhockey airhockey1 = new Airhockey("Airhockey 1", 4, false, 30, false, 1);
             Airhockey airhockey2 = new Airhockey("Airhockey 2", 4, false, 30, false, 2);
@@ -43,9 +48,8 @@ public class InitData implements CommandLineRunner {
 
         public void createBowlingLanes(){
             System.out.println("Creating Bowling lanes");
-            Set<BowlingLane> exsistingBowlingLanes = new HashSet<>();
-            exsistingBowlingLanes.addAll(bowlingLaneRepository.findAll());
-
+            Set<BowlingLane> existingBowlingLanes = new HashSet<>();
+            existingBowlingLanes.addAll(bowlingLaneRepository.findAll());
 
             BowlingLane bowlingLane1 = new BowlingLane("Bowling lane 1", 6, false, 60, false, 1);
             BowlingLane bowlingLane2 = new BowlingLane("Bowling lane 2", 6, false, 60, false, 2);
@@ -72,6 +76,24 @@ public class InitData implements CommandLineRunner {
             BowlingLane bowlingLane23 = new BowlingLane("Bowling lane 23", 6, false, 60, false, 23);
             BowlingLane bowlingLane24 = new BowlingLane("Bowling lane 24", 6, false, 60, false, 24);
             bowlingLaneRepository.saveAll(List.of(bowlingLane1, bowlingLane2, bowlingLane3, bowlingLane4, bowlingLane5, bowlingLane6, bowlingLane7, bowlingLane8, bowlingLane9, bowlingLane10, bowlingLane11, bowlingLane12, bowlingLane13, bowlingLane14, bowlingLane15, bowlingLane16, bowlingLane17, bowlingLane18, bowlingLane19, bowlingLane20, bowlingLane21, bowlingLane22, bowlingLane23, bowlingLane24));
+        }
 
+        public void createDiningTables() {
+            System.out.println("Creating dining tables");
+            Set<DiningTable> existingDiningTable = new HashSet<>();
+            existingDiningTable.addAll(diningTableRepository.findAll());
+            DiningTable diningTable1 = new DiningTable("Dining table 1", 8, false, 90, false, 1);
+            DiningTable diningTable2 = new DiningTable("Dining table 2", 8, false, 90, false, 2);
+            DiningTable diningTable3 = new DiningTable("Dining table 3", 8, false, 90, false, 3);
+            DiningTable diningTable4 = new DiningTable("Dining table 4", 8, false, 90, false, 4);
+            DiningTable diningTable5 = new DiningTable("Dining table 5", 8, false, 90, false, 5);
+            DiningTable diningTable6 = new DiningTable("Dining table 6", 8, false, 90, false, 6);
+            DiningTable diningTable7 = new DiningTable("Dining table 7", 8, false, 90, false, 7);
+            DiningTable diningTable8 = new DiningTable("Dining table 8", 8, false, 90, false, 8);
+            DiningTable diningTable9 = new DiningTable("Dining table 9", 8, false, 90, false, 9);
+            DiningTable diningTable10 = new DiningTable("Dining table 10", 8, false, 90, false, 10);
+            DiningTable diningTable11 = new DiningTable("Dining table 11", 8, false, 90, false, 11);
+            DiningTable diningTable12 = new DiningTable("Dining table 12", 8, false, 90, false, 12);
+            diningTableRepository.saveAll(List.of(diningTable1, diningTable2, diningTable3, diningTable4, diningTable5, diningTable6, diningTable7, diningTable8, diningTable9, diningTable10, diningTable11, diningTable12));
         }
 }
