@@ -15,7 +15,7 @@
     <!--Often a reversed company domain name, here you could use something like below -->
     <groupId>kea.sem3.bxb</groupId>
     <!-- The artifactId is the base package name used in the project -->
-    <artifactId>bxb</artifactId>
+    <artifactId>dat3.bxb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>bxb-backend</name>
     <description>
