@@ -11,10 +11,13 @@ import dat3.bxb.reservation.Reservation;
 import dat3.bxb.reservation.ReservationRepository;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.UserWithRolesRepository;
+import dat3.bxb.equipment.pin.Pin;
+import dat3.bxb.equipment.pin.PinRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,14 +29,17 @@ public class InitData implements CommandLineRunner {
     private final ReservationRepository reservationRepository;
     private final UserWithRolesRepository userWithRolesRepository;
     private final DiningTableRepository diningTableRepository;
+    private final PinRepository pinRepository;
 
 
     public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, DiningTableRepository diningTableRepository, PinRepository pinRepository){
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
         this.reservationRepository = reservationRepository;
         this.userWithRolesRepository = userWithRolesRepository;
         this.diningTableRepository = diningTableRepository;
+        this.pinRepository = pinRepository;
     }
 
     @Override
@@ -43,6 +49,7 @@ public class InitData implements CommandLineRunner {
         createBowlingLanes();
         createReservations();
         createDiningTables();
+        createPins();
     }
     public void createAirhockeyTables() {
         System.out.println("Creating Airhockey tables");
@@ -148,5 +155,23 @@ public class InitData implements CommandLineRunner {
         DiningTable diningTable11 = new DiningTable("Dining table 11", 8, false, 90, false, 11);
         DiningTable diningTable12 = new DiningTable("Dining table 12", 8, false, 90, false, 12);
         diningTableRepository.saveAll(List.of(diningTable1, diningTable2, diningTable3, diningTable4, diningTable5, diningTable6, diningTable7, diningTable8, diningTable9, diningTable10, diningTable11, diningTable12));
+    }
+
+
+
+    public void createPins() {
+        System.out.println("Creating Pins");
+        List<Pin> pins = new ArrayList<>();
+
+        for (int i = 0; i < 240; i++) { // 24 lanes x 10 pins
+            pins.add(new Pin());
+        }
+
+        // Adding 50 spare pins
+        for (int i = 0; i < 50; i++) {
+            pins.add(new Pin());
+        }
+
+        pinRepository.saveAll(pins);
     }
 }
