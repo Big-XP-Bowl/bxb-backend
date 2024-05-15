@@ -11,10 +11,12 @@ import dat3.bxb.activity.Activity;
 @Setter
 public class BowlingLane extends Activity {
     private int laneNumber;
+    private boolean isChildFriendly;
 
-    public BowlingLane(String name, int capacity, boolean isReserved, int duration, boolean isClosed, int LaneNumber) {
+    public BowlingLane(String name, int capacity, boolean isReserved, int duration, boolean isClosed, int laneNumber, boolean isChildFriendly) {
         super(name, capacity, isReserved, duration, isClosed);
-        this.laneNumber = LaneNumber;
+        this.laneNumber = laneNumber;
+        this.isChildFriendly = isChildFriendly;
     }
     public BowlingLane(){}
 }
