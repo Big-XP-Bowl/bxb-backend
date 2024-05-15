@@ -25,10 +25,18 @@ public class ReservationController {
         return reservationService.getReservationById(id);
     }
 
-
-
     @PostMapping("/create")
     public ReservationDTO createReservation(@RequestBody ReservationDTO reservationDTO) {
         return reservationService.createReservation(reservationDTO);
+    }
+
+    @PatchMapping("/{id}")
+    public ReservationDTO updateReservation(@PathVariable int id, @RequestBody ReservationDTO reservationDTO) {
+        return reservationService.updateReservation(id, reservationDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteReservation(@PathVariable int id) {
+        reservationService.deleteReservation(id);
     }
 }

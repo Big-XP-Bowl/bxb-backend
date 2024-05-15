@@ -110,7 +110,6 @@ public class InitData implements CommandLineRunner {
 
         Activity activity = airhockeyRepository.findById(1);
         Activity activity1 = bowlingLaneRepository.findById(7);
-        Activity activity2 = bowlingLaneRepository.findById(31);
 
         String username1 = "user1";
 
@@ -140,8 +139,8 @@ public class InitData implements CommandLineRunner {
                 new Reservation(activity1, startTime8, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime9, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime10, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime, 1, userWithRoles, "Sanne Loeb", "42424242", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity2, startTime, 3, userWithRoles, "Sanne Sol", "42424242", LocalDateTime.now(), LocalDateTime.now())
+                new Reservation(activity1, startTime, 1, userWithRoles, "Sanne Loeb", "42424242", LocalDateTime.now(), LocalDateTime.now())
+
         );
 
         for (Reservation reservation : reservations) {
