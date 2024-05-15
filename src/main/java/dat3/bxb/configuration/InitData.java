@@ -6,9 +6,12 @@ import dat3.bxb.bowlinglane.BowlingLane;
 import dat3.bxb.bowlinglane.BowlingLaneRepository;
 import dat3.bxb.diningtable.DiningTable;
 import dat3.bxb.diningtable.DiningTableRepository;
+import dat3.bxb.equipment.shoe.Shoe;
+import dat3.bxb.equipment.shoe.ShoeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,11 +21,13 @@ public class InitData implements CommandLineRunner {
     private final AirhockeyRepository airhockeyRepository;
     private final BowlingLaneRepository bowlingLaneRepository;
     private final DiningTableRepository diningTableRepository;
+    private final ShoeRepository shoeRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, DiningTableRepository diningTableRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, DiningTableRepository diningTableRepository, ShoeRepository shoeRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
         this.diningTableRepository = diningTableRepository;
+        this.shoeRepository = shoeRepository;
     }
 
     @Override
@@ -31,6 +36,7 @@ public class InitData implements CommandLineRunner {
             createAirhockeyTables();
             createBowlingLanes();
             createDiningTables();
+            createShoes();
         }
         public void createAirhockeyTables() {
             System.out.println("Creating Airhockey tables");
@@ -96,4 +102,33 @@ public class InitData implements CommandLineRunner {
             DiningTable diningTable12 = new DiningTable("Dining table 12", 8, false, 90, false, 12);
             diningTableRepository.saveAll(List.of(diningTable1, diningTable2, diningTable3, diningTable4, diningTable5, diningTable6, diningTable7, diningTable8, diningTable9, diningTable10, diningTable11, diningTable12));
         }
+
+    private void createShoes() {
+        Set<Shoe> existingShoes = new HashSet<>();
+        existingShoes.addAll(shoeRepository.findAll());
+
+        // Shoes pr. size
+        int shoesPerSize = 10;
+
+        // List of shoes
+        List<Integer> sizes = List.of(38, 40, 42, 44, 46);
+
+        List<Shoe> shoes = new ArrayList<>();
+
+        // Create shoes pr. size
+        for (Integer size : sizes) {
+            for (int i = 0; i < shoesPerSize; i++) {
+                Shoe shoe = new Shoe(size);
+                shoes.add(shoe);
+            }
+        }
+
+        // Check if shoes already exist in the database
+        if (existingShoes.isEmpty()) {
+            shoeRepository.saveAll(shoes);
+            System.out.println("Shoes initialized successfully.");
+        } else {
+            System.out.println("Shoes already exist in the database.");
+        }
+    }
 }
