@@ -7,7 +7,9 @@ import dat3.bxb.bowlinglane.BowlingLaneRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class InitData implements CommandLineRunner {
@@ -27,6 +29,9 @@ public class InitData implements CommandLineRunner {
         }
         public void createAirhockeyTables() {
             System.out.println("Creating Airhockey tables");
+            Set<Airhockey> exsistingAirhockeyTables = new HashSet<>();
+            exsistingAirhockeyTables.addAll(airhockeyRepository.findAll());
+
             Airhockey airhockey1 = new Airhockey("Airhockey 1", 4, false, 30, false, 1);
             Airhockey airhockey2 = new Airhockey("Airhockey 2", 4, false, 30, false, 2);
             Airhockey airhockey3 = new Airhockey("Airhockey 3", 4, false, 30, false, 3);
@@ -38,6 +43,10 @@ public class InitData implements CommandLineRunner {
 
         public void createBowlingLanes(){
             System.out.println("Creating Bowling lanes");
+            Set<BowlingLane> exsistingBowlingLanes = new HashSet<>();
+            exsistingBowlingLanes.addAll(bowlingLaneRepository.findAll());
+
+
             BowlingLane bowlingLane1 = new BowlingLane("Bowling lane 1", 6, false, 60, false, 1);
             BowlingLane bowlingLane2 = new BowlingLane("Bowling lane 2", 6, false, 60, false, 2);
             BowlingLane bowlingLane3 = new BowlingLane("Bowling lane 3", 6, false, 60, false, 3);
