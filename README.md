@@ -8,5 +8,3 @@ To set up the backend locally you need to:
 - Create mysql database bxb_db;
 - Set ENV variables in Intellij
 
-Hey
-
