@@ -89,14 +89,14 @@ class UserWithRoleControllerTest {
 
   @Test
   void addUsersWithRoles() throws Exception {
-    UserWithRolesRequest newUserReq = new UserWithRolesRequest("u100", "secret", "u100@a.dk");
+    UserWithRolesRequest newUserReq = new UserWithRolesRequest("u101", "secret1", "u101@a.dk");
     //UserWithRoleController.DEFAULT_ROLE_TO_ASSIGN = null;
     mockMvc.perform(post("/api/user-with-role")
                     .contentType("application/json")
                     .content(objectMapper.writeValueAsString(newUserReq)))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.userName").value("u100"))
-            .andExpect(jsonPath("$.email").value("u100@a.dk"))
+            .andExpect(jsonPath("$.userName").value("u101"))
+            .andExpect(jsonPath("$.email").value("u101@a.dk"))
             .andExpect(jsonPath("$.roleNames", hasSize(1)))
             .andExpect(jsonPath("$.roleNames", contains("USER")));
   }
@@ -118,6 +118,14 @@ class UserWithRoleControllerTest {
             .andExpect(jsonPath("$.roleNames", hasSize(1)))
             .andExpect(jsonPath("$.roleNames", contains("ADMIN")));
   }
+
+//  @Test
+//  void addRoleFailsWithWrongRole() throws Exception {
+//    mockMvc.perform(patch("/api/user-with-role/add-role/u2/admin")
+//                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + userToken)
+//                    .accept("application/json"))
+//            .andExpect(status().isForbidden());
+//  }
 
   @Test
   void removeRoleFailsWhenNotAuthenticatedWithRole() throws Exception {

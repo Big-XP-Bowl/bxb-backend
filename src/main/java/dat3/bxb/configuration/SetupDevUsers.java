@@ -8,8 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import dat3.security.repository.UserWithRolesRepository;
 
-import java.util.Optional;
-
 @Controller
 public class SetupDevUsers implements ApplicationRunner {
 
@@ -29,22 +27,21 @@ public class SetupDevUsers implements ApplicationRunner {
     }
     private void setupUserWithRoleUsers() {
         System.out.println("Setup users");
-        saveUserWithRoles("user1", passwordUsedByAll, "user1@a.dk", Role.USER);
-        saveUserWithRoles("user2", passwordUsedByAll, "user2@a.dk", Role.ADMIN, Role.BAR, Role.MAINTENANCE, Role.USER); //Admins can also be bartenders/maintenance/users
-        saveUserWithRoles("user3", passwordUsedByAll, "user3@a.dk", Role.BAR, Role.USER); //Bar personal can also be users
-        saveUserWithRoles("user4", passwordUsedByAll, "user4@a.dk", Role.MAINTENANCE);
-    }
-
-    private void saveUserWithRoles(String username, String password, String email, Role... roles) {
-        Optional<UserWithRoles> existingUser = Optional.ofNullable(userWithRolesRepository.findByUsername(username));
-        if (existingUser.isPresent()) {
-            System.out.println("User " + username + " already exists. Skipping.");
-            return;
-        }
-        UserWithRoles user = new UserWithRoles(username, password, email);
-        for (Role role : roles) {
-            user.addRole(role);
-        }
-        userWithRolesRepository.save(user);
+        UserWithRoles user1 = new UserWithRoles("user1", passwordUsedByAll, "user1@a.dk");
+        UserWithRoles user2 = new UserWithRoles("user2", passwordUsedByAll, "user2@a.dk");
+        UserWithRoles user3 = new UserWithRoles("user3", passwordUsedByAll, "user3@a.dk");
+        UserWithRoles user4 = new UserWithRoles("user4", passwordUsedByAll, "user4@a.dk");
+        user1.addRole(Role.USER);
+        user2.addRole(Role.ADMIN);
+        user2.addRole(Role.BAR); //Admins can also be bartenders
+        user2.addRole(Role.MAINTENANCE); //Admins can also be maintenance
+        user2.addRole(Role.USER); //Admins can also be users
+        user3.addRole(Role.BAR);
+        user3.addRole(Role.USER); //Bar personal can also be users
+        user4.addRole(Role.MAINTENANCE);
+        userWithRolesRepository.save(user1);
+        userWithRolesRepository.save(user2);
+        userWithRolesRepository.save(user3);
+        userWithRolesRepository.save(user4);
     }
 }
