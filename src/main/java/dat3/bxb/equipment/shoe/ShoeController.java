@@ -1,6 +1,5 @@
 package dat3.bxb.equipment.shoe;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,9 +8,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/shoes")
 public class ShoeController {
+    private final ShoeService shoeService;
 
-    @Autowired
-    private ShoeService shoeService;
+    public ShoeController(ShoeService shoeService) {
+        this.shoeService = shoeService;
+    }
 
     @GetMapping
     public List<ShoeDTO> getAllShoes() {
@@ -35,4 +36,3 @@ public class ShoeController {
         return ResponseEntity.ok().build();
     }
 }
-
