@@ -11,6 +11,8 @@ import dat3.bxb.employee.Employee;
 import dat3.bxb.employee.EmployeeRepository;
 import dat3.bxb.reservation.Reservation;
 import dat3.bxb.reservation.ReservationRepository;
+import dat3.bxb.schedule.Schedule;
+import dat3.bxb.schedule.ScheduleRepository;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.UserWithRolesRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -28,14 +30,16 @@ public class InitData implements CommandLineRunner {
     private final UserWithRolesRepository userWithRolesRepository;
     private final DiningTableRepository diningTableRepository;
     private final EmployeeRepository employeeRepository;
+    private final ScheduleRepository scheduleRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository, ScheduleRepository scheduleRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
         this.reservationRepository = reservationRepository;
         this.userWithRolesRepository = userWithRolesRepository;
         this.diningTableRepository = diningTableRepository;
         this.employeeRepository = employeeRepository;
+        this.scheduleRepository = scheduleRepository;
     }
 
     @Override
@@ -46,6 +50,7 @@ public class InitData implements CommandLineRunner {
         createReservations();
         createDiningTables();
         createEmployees();
+        createSchedules();
     }
 
     public void createAirhockeyTables() {
@@ -200,6 +205,32 @@ public class InitData implements CommandLineRunner {
             if (existingEmployee == null) {
                 employeeRepository.save(employee);
             }
+        }
+    }
+
+    public void createSchedules() {
+        System.out.println("Creating schedules");
+
+        // Find employees by their IDs
+        Optional<Employee> employee1Optional = employeeRepository.findById(1);
+        Optional<Employee> employee2Optional = employeeRepository.findById(2);
+        Optional<Employee> employee3Optional = employeeRepository.findById(3);
+
+        // Check if employees exist and create schedules
+        if (employee1Optional.isPresent() && employee2Optional.isPresent() && employee3Optional.isPresent()) {
+            Employee employee1 = employee1Optional.get();
+            Employee employee2 = employee2Optional.get();
+            Employee employee3 = employee3Optional.get();
+
+            List<Schedule> schedules = List.of(
+                    new Schedule(LocalDateTime.of(2021, 12, 24, 12, 0), LocalDateTime.of(2021, 12, 24, 16, 0), employee1),
+                    new Schedule(LocalDateTime.of(2021, 12, 24, 16, 0), LocalDateTime.of(2021, 12, 24, 20, 0), employee2),
+                    new Schedule(LocalDateTime.of(2021, 12, 24, 20, 0), LocalDateTime.of(2021, 12, 25, 0, 0), employee3) // Adjust end time to next day
+            );
+
+            scheduleRepository.saveAll(schedules);
+        } else {
+            System.out.println("Error: One or more employees not found.");
         }
     }
 }
