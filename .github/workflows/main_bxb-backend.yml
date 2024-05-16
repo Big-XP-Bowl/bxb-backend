@@ -29,7 +29,8 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-
+          retention-days: 1
+          
   deploy:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
