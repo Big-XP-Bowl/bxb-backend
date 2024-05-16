@@ -9,6 +9,8 @@ import dat3.bxb.diningtable.DiningTable;
 import dat3.bxb.diningtable.DiningTableRepository;
 import dat3.bxb.employee.Employee;
 import dat3.bxb.employee.EmployeeRepository;
+import dat3.bxb.product.Product;
+import dat3.bxb.product.ProductRepository;
 import dat3.bxb.reservation.Reservation;
 import dat3.bxb.reservation.ReservationRepository;
 import dat3.bxb.schedule.Schedule;
@@ -31,8 +33,9 @@ public class InitData implements CommandLineRunner {
     private final DiningTableRepository diningTableRepository;
     private final EmployeeRepository employeeRepository;
     private final ScheduleRepository scheduleRepository;
+    private final ProductRepository productRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository, ScheduleRepository scheduleRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository, ScheduleRepository scheduleRepository, ProductRepository productRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
         this.reservationRepository = reservationRepository;
@@ -40,6 +43,7 @@ public class InitData implements CommandLineRunner {
         this.diningTableRepository = diningTableRepository;
         this.employeeRepository = employeeRepository;
         this.scheduleRepository = scheduleRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -51,6 +55,7 @@ public class InitData implements CommandLineRunner {
         createDiningTables();
         createEmployees();
         createSchedules();
+        createProducts();
     }
 
     public void createAirhockeyTables() {
@@ -233,4 +238,31 @@ public class InitData implements CommandLineRunner {
             System.out.println("Error: One or more employees not found.");
         }
     }
+
+    public void createProducts() {
+        System.out.println("Creating Products");
+
+        List<Product> products = List.of(
+                new Product(Product.Category.DRINK, "https://images.pexels.com/photos/7429792/pexels-photo-7429792.jpeg", 25.0, "Coca Cola"),
+                new Product(Product.Category.DRINK, "https://images.pexels.com/photos/6223375/pexels-photo-6223375.jpeg", 45.0, "Øl"),
+                new Product(Product.Category.DRINK, "https://c.pxhere.com/images/cf/9a/2996322f6e4e1c49c8bdaf67f459-1434971.jpg!d", 20.0, "Mineralvand"),
+                new Product(Product.Category.SNACK, "https://live.staticflickr.com/1552/25301746624_8752d4bd1c_b.jpg", 15.0, "Kartoffelchips"),
+                new Product(Product.Category.SNACK, "https://images.pexels.com/photos/7234396/pexels-photo-7234396.jpeg", 10.0, "Popcorn"),
+                new Product(Product.Category.DRINK, "https://images.pexels.com/photos/8679343/pexels-photo-8679343.jpeg", 30.0, "Appelsinjuice"),
+                new Product(Product.Category.SNACK, "https://images.pexels.com/photos/5472169/pexels-photo-5472169.jpeg", 20.0, "Nødder"),
+                new Product(Product.Category.SNACK, "https://images.pexels.com/photos/5744302/pexels-photo-5744302.jpeg", 15.0, "Slik"),
+                new Product(Product.Category.DRINK, "https://live.staticflickr.com/4392/35968783350_547823ebf1_b.jpg", 60.0, "Rødvin"),
+                new Product(Product.Category.DRINK, "https://images.pexels.com/photos/107556/pexels-photo-107556.jpeg", 60.0, "Hvidvin"),
+                new Product(Product.Category.DRINK, "https://c.pxhere.com/photos/81/f9/cup_of_coffee_coffee_beans-617211.jpg!d", 20.0, "Kaffe"),
+                new Product(Product.Category.DRINK, "https://www.oplevbyen.dk/wp-content/uploads/2018/01/22555104_1892488500769067_7614522938237404698_n-777x437.jpg", 15.0, "Te"),
+                new Product(Product.Category.DRINK, "https://www.oplevbyen.dk/wp-content/uploads/2018/01/22555104_1892488500769067_7614522938237404698_n-777x437.jpg", 15.0, "Grøn te")
+        );
+
+        for (Product product : products) {
+            if (!productRepository.existsByName(product.getName())) {
+                productRepository.save(product);
+            }
+        }
+    }
+
 }
