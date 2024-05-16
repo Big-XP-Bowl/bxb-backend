@@ -25,17 +25,10 @@ public class ReservationService {
         return reservations.stream().map(this::convertToDTO).toList();
     }
 
-    private ReservationDTO convertToDTO(Reservation reservation) {
-        ReservationDTO dto = new ReservationDTO();
-        dto.setActivityId(reservation.getActivity().getId());
-        dto.setStartTime(reservation.getStartTime());
-        dto.setPartySize(reservation.getPartySize());
-        dto.setUserWithRolesUsername(reservation.getUserWithRoles().getUsername());
-        dto.setCustomerName(reservation.getCustomerName());
-        dto.setCustomerPhone(reservation.getCustomerPhone());
-        dto.setCreated(reservation.getCreated());
-        dto.setEdited(reservation.getEdited());
-        return dto;
+    public ReservationDTO getReservationById(int id) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
+        return convertToDTO(reservation);
     }
 
     public ReservationDTO createReservation(ReservationDTO reservationDTO) {
@@ -61,9 +54,41 @@ public class ReservationService {
         return convertToDTO(reservation);
     }
 
-    public ReservationDTO getReservationById(int id) {
+    public ReservationDTO updateReservation(int id, ReservationDTO reservationDTO) {
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
+        reservation.setActivity(activityRepository.findById(
+                reservationDTO.getActivityId())
+                .orElseThrow(() -> new IllegalArgumentException("Activity not found with ID: " + reservationDTO.getActivityId())));
+        reservation.setStartTime(reservationDTO.getStartTime());
+        reservation.setPartySize(reservationDTO.getPartySize());
+        reservation.setUserWithRoles(userWithRolesRepository.findByUsername(reservationDTO.getUserWithRolesUsername()));
+        reservation.setCustomerName(reservationDTO.getCustomerName());
+        reservation.setCustomerPhone(reservationDTO.getCustomerPhone());
+        reservation.setCreated(reservationDTO.getCreated());
+        reservation.setEdited(reservationDTO.getEdited());
+        reservationRepository.save(reservation);
         return convertToDTO(reservation);
     }
+
+    public void deleteReservation(int id) {
+        if (!reservationRepository.existsById(id)) {
+            throw new IllegalArgumentException("Reservation not found with ID: " + id);
+        }
+        reservationRepository.deleteById(id);
+    }
+
+    private ReservationDTO convertToDTO(Reservation reservation) {
+        ReservationDTO dto = new ReservationDTO();
+        dto.setActivityId(reservation.getActivity().getId());
+        dto.setStartTime(reservation.getStartTime());
+        dto.setPartySize(reservation.getPartySize());
+        dto.setUserWithRolesUsername(reservation.getUserWithRoles().getUsername());
+        dto.setCustomerName(reservation.getCustomerName());
+        dto.setCustomerPhone(reservation.getCustomerPhone());
+        dto.setCreated(reservation.getCreated());
+        dto.setEdited(reservation.getEdited());
+        return dto;
+    }
+
 }

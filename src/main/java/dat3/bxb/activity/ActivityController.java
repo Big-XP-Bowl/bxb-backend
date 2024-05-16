@@ -22,12 +22,12 @@ public class ActivityController {
         return activityService.getAllActivities();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ActivityDTO getActivityById(@PathVariable int id) {
         return activityService.getActivityById(id);
     }
 
-    @GetMapping("/{activityType}")
+    @GetMapping("/type/{activityType}")
     public List<ActivityDTO> getActivitiesByType(@PathVariable String activityType) {
         return activityService.getActivitiesByType(activityType);
     }
