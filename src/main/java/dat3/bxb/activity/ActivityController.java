@@ -31,6 +31,3 @@ public class ActivityController {
         return activityService.getActivitiesByType(activityType);
     }
 }
-
-
-
