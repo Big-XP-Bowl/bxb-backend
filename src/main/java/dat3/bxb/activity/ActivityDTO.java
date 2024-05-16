@@ -15,6 +15,7 @@ public class ActivityDTO {
     private String type;
     private int tableNumber;
     private int laneNumber;
+    private int diningTableNumber;
 
     public void setIsClosed(boolean closed) {
     }
