@@ -1,6 +1,5 @@
 package dat3.bxb.product;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,9 +8,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    private final ProductService productService;
 
-    @Autowired
-    private ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping
     public List<ProductDTO> getAllProducts() {
@@ -41,4 +42,3 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 }
-

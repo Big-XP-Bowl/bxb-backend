@@ -1,6 +1,5 @@
 package dat3.bxb.bowlinglane;
 
-
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
