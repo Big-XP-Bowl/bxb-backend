@@ -25,6 +25,12 @@ public class ReservationService {
         return reservations.stream().map(this::convertToDTO).toList();
     }
 
+    public ReservationDTO getReservationById(int id) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
+        return convertToDTO(reservation);
+    }
+
     public ReservationDTO createReservation(ReservationDTO reservationDTO) {
         Reservation reservation = new Reservation();
         reservation.setActivity(activityRepository.findById(
@@ -45,12 +51,6 @@ public class ReservationService {
         reservationRepository.save(reservation);
 
         // Convert the saved reservation to DTO and return it
-        return convertToDTO(reservation);
-    }
-
-    public ReservationDTO getReservationById(int id) {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
         return convertToDTO(reservation);
     }
 

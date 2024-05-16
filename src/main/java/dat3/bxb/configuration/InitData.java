@@ -7,6 +7,8 @@ import dat3.bxb.bowlinglane.BowlingLane;
 import dat3.bxb.bowlinglane.BowlingLaneRepository;
 import dat3.bxb.diningtable.DiningTable;
 import dat3.bxb.diningtable.DiningTableRepository;
+import dat3.bxb.employee.Employee;
+import dat3.bxb.employee.EmployeeRepository;
 import dat3.bxb.reservation.Reservation;
 import dat3.bxb.reservation.ReservationRepository;
 import dat3.security.entity.UserWithRoles;
@@ -25,13 +27,15 @@ public class InitData implements CommandLineRunner {
     private final ReservationRepository reservationRepository;
     private final UserWithRolesRepository userWithRolesRepository;
     private final DiningTableRepository diningTableRepository;
+    private final EmployeeRepository employeeRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
         this.reservationRepository = reservationRepository;
         this.userWithRolesRepository = userWithRolesRepository;
         this.diningTableRepository = diningTableRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
@@ -41,6 +45,7 @@ public class InitData implements CommandLineRunner {
         createBowlingLanes();
         createReservations();
         createDiningTables();
+        createEmployees();
     }
 
     public void createAirhockeyTables() {
@@ -177,6 +182,23 @@ public class InitData implements CommandLineRunner {
             if (existingTable == null) {
                 // If not, save the new table
                 diningTableRepository.save(diningTable);
+            }
+        }
+    }
+
+    public void createEmployees() {
+        System.out.println("Creating employees");
+
+        List<Employee> employees = List.of(
+                new Employee(Employee.EmpType.MANAGER, "Joe Davis", "JD"),
+                new Employee(Employee.EmpType.BAR, "John Smith", "JS"),
+                new Employee(Employee.EmpType.MAINTENANCE, "Jane Doe", "JDoe")
+        );
+
+        for (Employee employee : employees) {
+            Employee existingEmployee = employeeRepository.findByName(employee.getName());
+            if (existingEmployee == null) {
+                employeeRepository.save(employee);
             }
         }
     }
