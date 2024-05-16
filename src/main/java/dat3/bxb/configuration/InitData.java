@@ -17,10 +17,13 @@ import dat3.bxb.schedule.Schedule;
 import dat3.bxb.schedule.ScheduleRepository;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.UserWithRolesRepository;
+import dat3.bxb.equipment.pin.Pin;
+import dat3.bxb.equipment.pin.PinRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,22 +31,24 @@ import java.util.Optional;
 public class InitData implements CommandLineRunner {
     private final AirhockeyRepository airhockeyRepository;
     private final BowlingLaneRepository bowlingLaneRepository;
+    private final DiningTableRepository diningTableRepository;
     private final ReservationRepository reservationRepository;
     private final UserWithRolesRepository userWithRolesRepository;
-    private final DiningTableRepository diningTableRepository;
     private final EmployeeRepository employeeRepository;
     private final ScheduleRepository scheduleRepository;
     private final ProductRepository productRepository;
+    private final PinRepository pinRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository, ScheduleRepository scheduleRepository, ProductRepository productRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository, ScheduleRepository scheduleRepository, ProductRepository productRepository, PinRepository pinRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
+        this.diningTableRepository = diningTableRepository;
         this.reservationRepository = reservationRepository;
         this.userWithRolesRepository = userWithRolesRepository;
-        this.diningTableRepository = diningTableRepository;
         this.employeeRepository = employeeRepository;
         this.scheduleRepository = scheduleRepository;
         this.productRepository = productRepository;
+        this.pinRepository = pinRepository;
     }
 
     @Override
@@ -51,11 +56,12 @@ public class InitData implements CommandLineRunner {
         System.out.println("Hello from InitData");
         createAirhockeyTables();
         createBowlingLanes();
-        createReservations();
         createDiningTables();
+        createReservations();
         createEmployees();
         createSchedules();
         createProducts();
+        createPins();
     }
 
     public void createAirhockeyTables() {
@@ -120,6 +126,34 @@ public class InitData implements CommandLineRunner {
         }
     }
 
+    public void createDiningTables() {
+        System.out.println("Creating dining tables");
+
+        List<DiningTable> diningTables = List.of(
+                new DiningTable("Dining table 1", 8, false, 90, false, 1),
+                new DiningTable("Dining table 2", 8, false, 90, false, 2),
+                new DiningTable("Dining table 3", 8, false, 90, false, 3),
+                new DiningTable("Dining table 4", 8, false, 90, false, 4),
+                new DiningTable("Dining table 5", 8, false, 90, false, 5),
+                new DiningTable("Dining table 6", 8, false, 90, false, 6),
+                new DiningTable("Dining table 7", 8, false, 90, false, 7),
+                new DiningTable("Dining table 8", 8, false, 90, false, 8),
+                new DiningTable("Dining table 9", 8, false, 90, false, 9),
+                new DiningTable("Dining table 10", 8, false, 90, false, 10),
+                new DiningTable("Dining table 11", 8, false, 90, false, 11),
+                new DiningTable("Dining table 12", 8, false, 90, false, 12)
+        );
+
+        for (DiningTable diningTable : diningTables) {
+            // Check if a table with the same number already exists
+            DiningTable existingTable = diningTableRepository.findByDiningTableNumber(diningTable.getDiningTableNumber());
+            if (existingTable == null) {
+                // If not, save the new table
+                diningTableRepository.save(diningTable);
+            }
+        }
+    }
+
     public void createReservations(){
         System.out.println("Creating reservations");
 
@@ -164,34 +198,6 @@ public class InitData implements CommandLineRunner {
             if (existingReservation.isEmpty()) {
                 // If no such reservation exists, save the new one
                 reservationRepository.save(reservation);
-            }
-        }
-    }
-
-    public void createDiningTables() {
-        System.out.println("Creating dining tables");
-
-        List<DiningTable> diningTables = List.of(
-                new DiningTable("Dining table 1", 8, false, 90, false, 1),
-                new DiningTable("Dining table 2", 8, false, 90, false, 2),
-                new DiningTable("Dining table 3", 8, false, 90, false, 3),
-                new DiningTable("Dining table 4", 8, false, 90, false, 4),
-                new DiningTable("Dining table 5", 8, false, 90, false, 5),
-                new DiningTable("Dining table 6", 8, false, 90, false, 6),
-                new DiningTable("Dining table 7", 8, false, 90, false, 7),
-                new DiningTable("Dining table 8", 8, false, 90, false, 8),
-                new DiningTable("Dining table 9", 8, false, 90, false, 9),
-                new DiningTable("Dining table 10", 8, false, 90, false, 10),
-                new DiningTable("Dining table 11", 8, false, 90, false, 11),
-                new DiningTable("Dining table 12", 8, false, 90, false, 12)
-        );
-
-        for (DiningTable diningTable : diningTables) {
-            // Check if a table with the same number already exists
-            DiningTable existingTable = diningTableRepository.findByDiningTableNumber(diningTable.getDiningTableNumber());
-            if (existingTable == null) {
-                // If not, save the new table
-                diningTableRepository.save(diningTable);
             }
         }
     }
@@ -263,6 +269,22 @@ public class InitData implements CommandLineRunner {
                 productRepository.save(product);
             }
         }
+    }
+
+    public void createPins() {
+        System.out.println("Creating Pins");
+        List<Pin> pins = new ArrayList<>();
+
+        for (int i = 0; i < 240; i++) { // 24 lanes x 10 pins
+            pins.add(new Pin());
+        }
+
+        // Adding 50 spare pins
+        for (int i = 0; i < 50; i++) {
+            pins.add(new Pin());
+        }
+
+        pinRepository.saveAll(pins);
     }
 
 }
