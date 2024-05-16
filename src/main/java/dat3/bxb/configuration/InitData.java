@@ -9,23 +9,25 @@ import dat3.bxb.diningtable.DiningTable;
 import dat3.bxb.diningtable.DiningTableRepository;
 import dat3.bxb.employee.Employee;
 import dat3.bxb.employee.EmployeeRepository;
+import dat3.bxb.equipment.pin.Pin;
+import dat3.bxb.equipment.pin.PinRepository;
 import dat3.bxb.product.Product;
 import dat3.bxb.product.ProductRepository;
 import dat3.bxb.reservation.Reservation;
 import dat3.bxb.reservation.ReservationRepository;
 import dat3.bxb.schedule.Schedule;
 import dat3.bxb.schedule.ScheduleRepository;
+import dat3.bxb.equipment.shoe.Shoe;
+import dat3.bxb.equipment.shoe.ShoeRepository;
 import dat3.security.entity.UserWithRoles;
 import dat3.security.repository.UserWithRolesRepository;
-import dat3.bxb.equipment.pin.Pin;
-import dat3.bxb.equipment.pin.PinRepository;
+
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class InitData implements CommandLineRunner {
@@ -38,8 +40,9 @@ public class InitData implements CommandLineRunner {
     private final ScheduleRepository scheduleRepository;
     private final ProductRepository productRepository;
     private final PinRepository pinRepository;
+    private final ShoeRepository shoeRepository;
 
-    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository, ScheduleRepository scheduleRepository, ProductRepository productRepository, PinRepository pinRepository) {
+    public InitData(AirhockeyRepository airhockeyRepository, BowlingLaneRepository bowlingLaneRepository, ReservationRepository reservationRepository, UserWithRolesRepository userWithRolesRepository, DiningTableRepository diningTableRepository, EmployeeRepository employeeRepository, ScheduleRepository scheduleRepository, ProductRepository productRepository, PinRepository pinRepository, ShoeRepository shoeRepository) {
         this.airhockeyRepository = airhockeyRepository;
         this.bowlingLaneRepository = bowlingLaneRepository;
         this.diningTableRepository = diningTableRepository;
@@ -49,6 +52,7 @@ public class InitData implements CommandLineRunner {
         this.scheduleRepository = scheduleRepository;
         this.productRepository = productRepository;
         this.pinRepository = pinRepository;
+        this.shoeRepository = shoeRepository;
     }
 
     @Override
@@ -62,6 +66,7 @@ public class InitData implements CommandLineRunner {
         createSchedules();
         createProducts();
         createPins();
+        createShoes();
     }
 
     public void createAirhockeyTables() {
@@ -287,4 +292,31 @@ public class InitData implements CommandLineRunner {
         pinRepository.saveAll(pins);
     }
 
+    private void createShoes() {
+        Set<Shoe> existingShoes = new HashSet<>(shoeRepository.findAll());
+
+        // Shoes pr. size
+        int shoesPerSize = 10;
+
+        // List of shoes
+        List<Integer> sizes = List.of(38, 40, 42, 44, 46);
+
+        List<Shoe> shoes = new ArrayList<>();
+
+        // Create shoes pr. size
+        for (Integer size : sizes) {
+            for (int i = 0; i < shoesPerSize; i++) {
+                Shoe shoe = new Shoe(size);
+                shoes.add(shoe);
+            }
+        }
+
+        // Check if shoes already exist in the database
+        if (existingShoes.isEmpty()) {
+            shoeRepository.saveAll(shoes);
+            System.out.println("Shoes initialized successfully.");
+        } else {
+            System.out.println("Shoes already exist in the database.");
+        }
+    }
 }
