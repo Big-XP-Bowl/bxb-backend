@@ -6,7 +6,6 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
-
     private final EmployeeRepository employeeRepository;
 
     public EmployeeService(EmployeeRepository employeeRepository) {

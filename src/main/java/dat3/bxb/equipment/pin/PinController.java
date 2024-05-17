@@ -20,7 +20,7 @@ public class PinController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PinDTO> getPinById(@PathVariable Long id) {
+    public ResponseEntity<PinDTO> getPinById(@PathVariable int id) {
         PinDTO pinDTO = pinService.getPinById(id);
         return pinDTO != null ? ResponseEntity.ok(pinDTO) : ResponseEntity.notFound().build();
     }
@@ -31,7 +31,7 @@ public class PinController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePin(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePin(@PathVariable int id) {
         pinService.deletePin(id);
         return ResponseEntity.ok().build();
     }
