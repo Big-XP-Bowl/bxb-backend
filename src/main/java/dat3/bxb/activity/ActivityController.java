@@ -1,6 +1,5 @@
 package dat3.bxb.activity;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +31,3 @@ public class ActivityController {
         return activityService.getActivitiesByType(activityType);
     }
 }
-
-
-

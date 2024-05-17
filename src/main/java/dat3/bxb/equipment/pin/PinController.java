@@ -1,6 +1,5 @@
 package dat3.bxb.equipment.pin;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,9 +8,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/pins")
 public class PinController {
+    private final PinService pinService;
 
-    @Autowired
-    private PinService pinService;
+    public PinController(PinService pinService) {
+        this.pinService = pinService;
+    }
 
     @GetMapping
     public List<PinDTO> getAllPins() {
@@ -35,4 +36,3 @@ public class PinController {
         return ResponseEntity.ok().build();
     }
 }
-

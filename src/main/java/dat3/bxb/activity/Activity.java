@@ -1,6 +1,5 @@
 package dat3.bxb.activity;
 
-import dat3.bxb.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

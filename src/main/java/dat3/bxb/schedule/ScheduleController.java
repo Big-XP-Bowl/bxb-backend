@@ -1,6 +1,5 @@
 package dat3.bxb.schedule;
 
-import dat3.bxb.reservation.ReservationDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,4 +43,3 @@ public class ScheduleController {
         scheduleService.deleteSchedule(id);
     }
 }
-

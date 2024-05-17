@@ -1,6 +1,5 @@
 package dat3.bxb.employee;
 
-import lombok.Getter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {

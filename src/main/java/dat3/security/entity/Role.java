@@ -8,11 +8,8 @@ If you change anything here, you must also change this annotation, used on roles
 public enum Role {
     USER,
     ADMIN,
-
     BAR,
-
     MAINTENANCE;
-
     public static Role fromString(String roleString) {
         return Role.valueOf(roleString.trim().toUpperCase());
     }
