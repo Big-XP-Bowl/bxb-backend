@@ -1,6 +1,5 @@
 package dat3.bxb.product;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,9 +7,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
+    private final ProductRepository productRepository;
 
-    @Autowired
-    private ProductRepository productRepository;
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<ProductDTO> getAllProducts() {
         return productRepository.findAll().stream()
@@ -18,7 +19,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductDTO getProductById(Long id) {
+    public ProductDTO getProductById(int id) {
         return productRepository.findById(id)
                 .map(this::convertToDTO)
                 .orElse(null);
@@ -30,14 +31,14 @@ public class ProductService {
         return convertToDTO(product);
     }
 
-    public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
+    public ProductDTO updateProduct(int id, ProductDTO productDTO) {
         Product product = convertToEntity(productDTO);
         product.setId(id);
         product = productRepository.save(product);
         return convertToDTO(product);
     }
 
-    public void deleteProduct(Long id) {
+    public void deleteProduct(int id) {
         productRepository.deleteById(id);
     }
 

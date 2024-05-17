@@ -11,10 +11,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Shoe {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private int size;
 

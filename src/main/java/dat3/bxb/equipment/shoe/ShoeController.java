@@ -20,7 +20,7 @@ public class ShoeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShoeDTO> getShoeById(@PathVariable Long id) {
+    public ResponseEntity<ShoeDTO> getShoeById(@PathVariable int id) {
         ShoeDTO shoeDTO = shoeService.getShoeById(id);
         return shoeDTO != null ? ResponseEntity.ok(shoeDTO) : ResponseEntity.notFound().build();
     }
@@ -31,7 +31,7 @@ public class ShoeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteShoe(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteShoe(@PathVariable int id) {
         shoeService.deleteShoe(id);
         return ResponseEntity.ok().build();
     }

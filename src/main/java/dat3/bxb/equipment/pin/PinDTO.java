@@ -6,12 +6,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PinDTO {
-    private Long id;
+    private int id;
 
     public PinDTO() {
     }
 
-    public PinDTO(Long id) {
+    public PinDTO(int id) {
         this.id = id;
     }
 }

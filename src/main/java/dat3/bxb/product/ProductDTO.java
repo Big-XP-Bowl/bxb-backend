@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class ProductDTO {
 
-    private Long id;
+    private int id;
     private String name;
     private double price;
     private String imageUrl;
@@ -18,7 +18,7 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String name, double price, String imageUrl, Product.Category category) {
+    public ProductDTO(int id, String name, double price, String imageUrl, Product.Category category) {
         this.id = id;
         this.name = name;
         this.price = price;

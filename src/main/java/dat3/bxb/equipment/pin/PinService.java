@@ -1,6 +1,5 @@
 package dat3.bxb.equipment.pin;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,9 +7,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class PinService {
+    private final PinRepository pinRepository;
 
-    @Autowired
-    private PinRepository pinRepository;
+    public PinService(PinRepository pinRepository) {
+        this.pinRepository = pinRepository;
+    }
 
     public List<PinDTO> getAllPins() {
         return pinRepository.findAll().stream()
@@ -18,7 +19,7 @@ public class PinService {
                 .collect(Collectors.toList());
     }
 
-    public PinDTO getPinById(Long id) {
+    public PinDTO getPinById(int id) {
         return pinRepository.findById(id)
                 .map(this::convertToDTO)
                 .orElse(null);
@@ -30,7 +31,7 @@ public class PinService {
         return convertToDTO(pin);
     }
 
-    public void deletePin(Long id) {
+    public void deletePin(int id) {
         pinRepository.deleteById(id);
     }
 
@@ -44,4 +45,3 @@ public class PinService {
         return pin;
     }
 }
-
