@@ -1,6 +1,5 @@
 package dat3.bxb.equipment.shoe;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,9 +7,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class ShoeService {
+    private final ShoeRepository shoeRepository;
 
-    @Autowired
-    private ShoeRepository shoeRepository;
+    public ShoeService(ShoeRepository shoeRepository) {
+        this.shoeRepository = shoeRepository;
+    }
 
     public List<ShoeDTO> getAllShoes() {
         return shoeRepository.findAll().stream()
@@ -18,7 +19,7 @@ public class ShoeService {
                 .collect(Collectors.toList());
     }
 
-    public ShoeDTO getShoeById(Long id) {
+    public ShoeDTO getShoeById(int id) {
         return shoeRepository.findById(id)
                 .map(this::convertToDTO)
                 .orElse(null);
@@ -30,7 +31,7 @@ public class ShoeService {
         return convertToDTO(shoe);
     }
 
-    public void deleteShoe(Long id) {
+    public void deleteShoe(int id) {
         shoeRepository.deleteById(id);
     }
 

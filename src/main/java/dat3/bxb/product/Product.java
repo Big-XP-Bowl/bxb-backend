@@ -10,10 +10,9 @@ import lombok.Setter;
 @Setter
 
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String name;
     private double price;
@@ -33,6 +32,5 @@ public class Product {
 
     public enum Category {
         DRINK, SNACK
-
     }
 }

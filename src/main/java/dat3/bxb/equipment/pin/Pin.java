@@ -11,8 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Pin {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 }
