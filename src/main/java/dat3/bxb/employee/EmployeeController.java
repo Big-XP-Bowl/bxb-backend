@@ -23,6 +23,12 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    @GetMapping("/type/{empType}")
+    public List<EmployeeDTO> getEmployeesByEmpType(@PathVariable String empType) {
+        return employeeService.getEmployeesByEmpType(empType);
+    }
+
+
     @PostMapping("/create")
     public EmployeeDTO createEmployee(@RequestBody EmployeeDTO employee) {
         return employeeService.createEmployee(employee);

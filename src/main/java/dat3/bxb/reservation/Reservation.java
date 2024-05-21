@@ -4,6 +4,7 @@ import dat3.bxb.activity.Activity;
 import dat3.security.entity.UserWithRoles;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.catalina.User;
 import org.hibernate.annotations.CreationTimestamp;

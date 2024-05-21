@@ -13,4 +13,5 @@ public class EmployeeDTO {
     private String empType; // Represent empType as a String
     private String name;
     private String initials;
+    private String imageUrl;
 }

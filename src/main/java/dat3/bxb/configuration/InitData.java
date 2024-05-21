@@ -213,9 +213,18 @@ public class InitData implements CommandLineRunner {
         System.out.println("Creating employees");
 
         List<Employee> employees = List.of(
-                new Employee(Employee.EmpType.MANAGER, "Joe Davis", "JD"),
-                new Employee(Employee.EmpType.BAR, "John Smith", "JS"),
-                new Employee(Employee.EmpType.MAINTENANCE, "Jane Doe", "JDoe")
+                new Employee(Employee.EmpType.MANAGER, "Tove Ditlevsen", "JD", "https://www.shutterstock.com/da/image-photo/headshot-close-portrait-latin-hispanic-confident-2343004129" ),
+                new Employee(Employee.EmpType.MANAGER, "Abdi Mohammed", "AM", "https://www.shutterstock.com/da/image-photo/headshot-portrait-young-adult-confident-smiling-2115297218"),
+                new Employee(Employee.EmpType.BAR, "Hannie Olsen", "HO", "https://www.shutterstock.com/da/image-photo/headshot-portrait-happy-indian-millennial-girl-1529381102"),
+                new Employee(Employee.EmpType.BAR, "Karen Larsen", "KL", "https://www.shutterstock.com/da/image-photo/stylish-confident-adult-50-years-old-1972000787"),
+                new Employee(Employee.EmpType.BAR, "Mogens Krogh", "HS", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOxEFysJCpJGiUaKyUnDwZxI14edrFaHe7m5ThU87gNQ&s"),
+                new Employee(Employee.EmpType.BAR, "John Faxe", "LL", "https://pbs.twimg.com/profile_images/378800000301376130/581005c77dfaf0e2ff5987209cae3f37_400x400.png"),
+                new Employee(Employee.EmpType.MAINTENANCE, "Sanne Sanger", "SS", "https://www.shutterstock.com/da/image-photo/head-shot-portrait-smart-confident-smiling-1721092123"),
+                new Employee(Employee.EmpType.MAINTENANCE, "Anne Jensen", "AJ", "https://www.shutterstock.com/da/image-photo/happy-millennial-business-woman-glasses-posing-2103373409"),
+                new Employee(Employee.EmpType.CLEANING, "Lone Jensen", "LJ", "https://www.shutterstock.com/da/image-photo/headshot-portrait-happy-ginger-girl-freckles-623804987"),
+                new Employee(Employee.EmpType.CLEANING, "John Smed", "JS", "https://www.shutterstock.com/da/image-photo/black-athlete-fitness-trainer-portrait-muscular-1506106214"),
+                new Employee(Employee.EmpType.CLEANING, "Craig Larman", "CL", "https://certification.scrumalliance.org/system/members/photos/000/000/056/200x200/craig_larman_-_head_-_square_-_1000_x_1000_-_sept_2017_-_orig_background.png?1543438389"),
+                new Employee(Employee.EmpType.CLEANING, "Linux Thorvalds", "LT", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR2a8LLjkXzYOMMMUVGQES3mrBHRxb5cyHW7DNzxnt7aVRkHItR")
         );
 
         for (Employee employee : employees) {
@@ -233,17 +242,61 @@ public class InitData implements CommandLineRunner {
         Optional<Employee> employee1Optional = employeeRepository.findById(1);
         Optional<Employee> employee2Optional = employeeRepository.findById(2);
         Optional<Employee> employee3Optional = employeeRepository.findById(3);
+        Optional<Employee> employee4Optional = employeeRepository.findById(4);
+        Optional<Employee> employee5Optional = employeeRepository.findById(5);
+        Optional<Employee> employee6Optional = employeeRepository.findById(6);
+        Optional<Employee> employee7Optional = employeeRepository.findById(7);
+        Optional<Employee> employee8Optional = employeeRepository.findById(8);
+        Optional<Employee> employee9Optional = employeeRepository.findById(9);
+        Optional<Employee> employee10Optional = employeeRepository.findById(10);
+        Optional<Employee> employee11Optional = employeeRepository.findById(11);
+        Optional<Employee> employee12Optional = employeeRepository.findById(12);
 
         // Check if employees exist and create schedules
-        if (employee1Optional.isPresent() && employee2Optional.isPresent() && employee3Optional.isPresent()) {
+        if (employee1Optional.isPresent() && employee2Optional.isPresent() && employee3Optional.isPresent() && employee4Optional.isPresent() && employee5Optional.isPresent() && employee6Optional.isPresent() && employee7Optional.isPresent() && employee8Optional.isPresent() && employee9Optional.isPresent() && employee10Optional.isPresent() && employee11Optional.isPresent() && employee12Optional.isPresent()) {
             Employee employee1 = employee1Optional.get();
             Employee employee2 = employee2Optional.get();
             Employee employee3 = employee3Optional.get();
+            Employee employee4 = employee4Optional.get();
+            Employee employee5 = employee5Optional.get();
+            Employee employee6 = employee6Optional.get();
+            Employee employee7 = employee7Optional.get();
+            Employee employee8 = employee8Optional.get();
+            Employee employee9 = employee9Optional.get();
+            Employee employee10 = employee10Optional.get();
+            Employee employee11 = employee11Optional.get();
+            Employee employee12 = employee12Optional.get();
 
             List<Schedule> schedules = List.of(
-                    new Schedule(LocalDateTime.of(2021, 12, 24, 12, 0), LocalDateTime.of(2021, 12, 24, 16, 0), employee1),
-                    new Schedule(LocalDateTime.of(2021, 12, 24, 16, 0), LocalDateTime.of(2021, 12, 24, 20, 0), employee2),
-                    new Schedule(LocalDateTime.of(2021, 12, 24, 20, 0), LocalDateTime.of(2021, 12, 25, 0, 0), employee3) // Adjust end time to next day
+                    //Morgen1
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee1), // Manager 1
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee3), // Bar 3-6
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee4), // Bar
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee7), // Maintanence 7-8
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee9), // Cleaning 9-12
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee10),// Cleaning
+                    //Aften1
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee2), // Manager 2
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee5), // Bar 1-2
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee6), // Bar
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee8), // Maintanence 3-6
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee11), // Cleaning 1-2
+                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee12), // Cleaning
+                    //Morgen2
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee1), // Manager 1
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee3), // Bar 3-6
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee4), // Bar
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee7), // Maintanence 7-8
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee9), // Cleaning 9-12
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee10),// Cleaning
+                    //Aften2
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee2), // Manager 2
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee5), // Bar 1-2
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee6), // Bar
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee8), // Maintanence 3-6
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee11), // Cleaning 1-2
+                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee12) // Cleaning
+
             );
 
             scheduleRepository.saveAll(schedules);

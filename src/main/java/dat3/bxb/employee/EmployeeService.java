@@ -3,6 +3,7 @@ package dat3.bxb.employee;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -28,6 +29,7 @@ public class EmployeeService {
         employee.setEmpType(Employee.EmpType.valueOf(employeeDTO.getEmpType()));
         employee.setName(employeeDTO.getName());
         employee.setInitials(employeeDTO.getInitials());
+        employee.setImageUrl(employeeDTO.getImageUrl());
         Employee savedEmployee = employeeRepository.save(employee); // Save the employee
         return convertToDTO(savedEmployee); // Convert and return the saved employee as DTO
     }
@@ -37,6 +39,13 @@ public class EmployeeService {
         dto.setEmpType(employee.getEmpType().toString()); // Convert enum to String
         dto.setName(employee.getName());
         dto.setInitials(employee.getInitials());
+        dto.setImageUrl(employee.getImageUrl());
         return dto;
+    }
+
+    public List<EmployeeDTO> getEmployeesByEmpType(String empType) {
+        Employee.EmpType type = Employee.EmpType.valueOf(empType.toUpperCase());
+        List<Employee> employees = employeeRepository.findByEmpType(type);
+        return employees.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 }

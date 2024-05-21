@@ -21,11 +21,13 @@ public class Employee {
 
     private String name;
     private String initials;
+    private String imageUrl;
 
-    public Employee(EmpType empType, String name, String initials) {
+    public Employee(EmpType empType, String name, String initials, String imageUrl) {
         this.empType = empType;
         this.name = name;
         this.initials = initials;
+        this.imageUrl = imageUrl;
     }
 
     public Employee() {
@@ -37,6 +39,9 @@ public class Employee {
         @JsonProperty("BAR")
         BAR,
         @JsonProperty("MAINTENANCE")
-        MAINTENANCE
+        MAINTENANCE,
+
+        @JsonProperty("CLEANING")
+        CLEANING,
     }
 }

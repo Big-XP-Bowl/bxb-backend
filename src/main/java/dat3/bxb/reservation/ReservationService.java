@@ -80,6 +80,7 @@ public class ReservationService {
 
     private ReservationDTO convertToDTO(Reservation reservation) {
         ReservationDTO dto = new ReservationDTO();
+        dto.setId(reservation.getId());
         dto.setActivityId(reservation.getActivity().getId());
         dto.setStartTime(reservation.getStartTime());
         dto.setPartySize(reservation.getPartySize());

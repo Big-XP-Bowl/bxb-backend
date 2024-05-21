@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 
 
 public class ReservationDTO {
+    private int id;
     private int activityID;
     private LocalDateTime startTime;
     private int partySize;
