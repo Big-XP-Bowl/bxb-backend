@@ -26,6 +26,7 @@ public class EmployeeService {
 
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
+        employee.setId(employeeDTO.getId());
         employee.setEmpType(Employee.EmpType.valueOf(employeeDTO.getEmpType()));
         employee.setName(employeeDTO.getName());
         employee.setInitials(employeeDTO.getInitials());
@@ -36,6 +37,7 @@ public class EmployeeService {
 
     public EmployeeDTO convertToDTO(Employee employee) {
         EmployeeDTO dto = new EmployeeDTO();
+        dto.setId(employee.getId());
         dto.setEmpType(employee.getEmpType().toString()); // Convert enum to String
         dto.setName(employee.getName());
         dto.setInitials(employee.getInitials());

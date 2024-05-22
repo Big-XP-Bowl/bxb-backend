@@ -170,31 +170,32 @@ public class InitData implements CommandLineRunner {
 
         UserWithRoles userWithRoles = userWithRolesRepository.findByUsername(username1);
 
-        LocalDateTime startTime = LocalDateTime.of(2021, 12, 24, 12, 0); // Example start time
-        LocalDateTime startTime1 = LocalDateTime.of(2021, 12, 24, 13, 0);
-        LocalDateTime startTime2 = LocalDateTime.of(2021, 12, 24, 14, 0);
-        LocalDateTime startTime3 = LocalDateTime.of(2021, 12, 24, 15, 0);
-        LocalDateTime startTime4 = LocalDateTime.of(2021, 12, 24, 16, 0);
-        LocalDateTime startTime5 = LocalDateTime.of(2021, 12, 24, 17, 0);
-        LocalDateTime startTime6 = LocalDateTime.of(2021, 12, 24, 18, 0);
-        LocalDateTime startTime7 = LocalDateTime.of(2021, 12, 24, 19, 0);
-        LocalDateTime startTime8 = LocalDateTime.of(2021, 12, 24, 20, 0);
-        LocalDateTime startTime9 = LocalDateTime.of(2021, 12, 24, 21, 0);
-        LocalDateTime startTime10 = LocalDateTime.of(2021, 12, 24, 22, 0);
+        LocalDateTime startTime = LocalDateTime.of(2024, 6, 8, 10, 0); // Example start time
+        LocalDateTime startTime1 = LocalDateTime.of(2024, 6, 8, 11, 0);
+        LocalDateTime startTime2 = LocalDateTime.of(2024, 6, 8, 12, 0);
+        LocalDateTime startTime3 = LocalDateTime.of(2024, 6, 8, 13, 0);
+        LocalDateTime startTime4 = LocalDateTime.of(2024, 6, 8, 14, 0);
+        LocalDateTime startTime5 = LocalDateTime.of(2024, 6, 8, 15, 0);
+        LocalDateTime startTime6 = LocalDateTime.of(2024, 6, 8, 16, 0);
+        LocalDateTime startTime7 = LocalDateTime.of(2024, 6, 8, 17, 0);
+        LocalDateTime startTime8 = LocalDateTime.of(2024, 6, 8, 18, 0);
+        LocalDateTime startTime9 = LocalDateTime.of(2024, 6, 8, 19, 0);
+        LocalDateTime startTime10 = LocalDateTime.of(2024, 6, 8, 20, 0);
+        LocalDateTime startTime11 = LocalDateTime.of(2024, 6, 8, 21, 0);
 
         List<Reservation> reservations = List.of(
-                new Reservation(activity, startTime, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity, startTime1, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity, startTime2, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity, startTime3, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime4, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime5, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime6, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime7, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime8, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime9, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime10, 1, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity1, startTime, 1, userWithRoles, "Sanne Loeb", "42424242", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime1, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime2, 2, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime3, 2, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime4, 2, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime5, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime6, 5, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime7, 6, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime8, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime9, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime10, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime11, 1, userWithRoles, "Sanne Loeb", "42424242", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity2, startTime, 2, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now())
 
         );
