@@ -10,7 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmployeeDTO {
+    private int id;
     private String empType; // Represent empType as a String
     private String name;
     private String initials;
+    private String imageUrl;
 }
