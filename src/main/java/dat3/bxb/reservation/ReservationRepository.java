@@ -1,11 +1,13 @@
 package dat3.bxb.reservation;
 
-import dat3.bxb.activity.Activity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer>{
-    Optional<Reservation> findByActivityAndStartTime(Activity activity, LocalDateTime startTime);
+    @Query("SELECT r FROM Reservation r WHERE r.activity.id = :activityId AND r.startTime = :startTime")
+    List<Reservation> findByActivityIdAndStartTime(@Param("activityId") int activityId, @Param("startTime") LocalDateTime startTime);
 }

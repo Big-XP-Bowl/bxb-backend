@@ -1,9 +1,11 @@
 package dat3.bxb.reservation;
 
+import dat3.bxb.activity.Activity;
 import dat3.bxb.activity.ActivityRepository;
 import dat3.security.repository.UserWithRolesRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -12,7 +14,6 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final ActivityRepository activityRepository;
     private final UserWithRolesRepository userWithRolesRepository;
-
 
     public ReservationService(ReservationRepository reservationRepository, ActivityRepository activityRepository, UserWithRolesRepository userWithRolesRepository) {
         this.reservationRepository = reservationRepository;
@@ -32,42 +33,55 @@ public class ReservationService {
     }
 
     public ReservationDTO createReservation(ReservationDTO reservationDTO) {
+        Activity activity = activityRepository.findById(reservationDTO.getActivityId())
+                .orElseThrow(() -> new IllegalArgumentException("Activity not found with ID: " + reservationDTO.getActivityId()));
+        LocalDateTime startTime = reservationDTO.getStartTime();
+
+        // Check for existing reservations with the same activity_id and start_time
+        List<Reservation> existingReservations = reservationRepository.findByActivityIdAndStartTime(activity.getId(), startTime);
+        if (!existingReservations.isEmpty()) {
+            throw new IllegalArgumentException("A reservation already exists for the selected activity at the specified start time.");
+        }
+
         Reservation reservation = new Reservation();
-        reservation.setActivity(activityRepository.findById(
-                reservationDTO.getActivityId())
-                .orElseThrow(() -> new IllegalArgumentException("Activity not found with ID: " + reservationDTO.getActivityId())));
-        reservation.setStartTime(reservationDTO.getStartTime());
+        reservation.setActivity(activity);
+        reservation.setStartTime(startTime);
         reservation.setPartySize(reservationDTO.getPartySize());
-
-        // Fix the typo here: missing closing parenthesis in findByUsername method
         reservation.setUserWithRoles(userWithRolesRepository.findByUsername(reservationDTO.getUserWithRolesUsername()));
-
         reservation.setCustomerName(reservationDTO.getCustomerName());
         reservation.setCustomerPhone(reservationDTO.getCustomerPhone());
         reservation.setCreated(reservationDTO.getCreated());
         reservation.setEdited(reservationDTO.getEdited());
 
-        // Save the reservation to the repository
         reservationRepository.save(reservation);
 
-        // Convert the saved reservation to DTO and return it
         return convertToDTO(reservation);
     }
 
     public ReservationDTO updateReservation(int id, ReservationDTO reservationDTO) {
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + id));
-        reservation.setActivity(activityRepository.findById(
-                reservationDTO.getActivityId())
-                .orElseThrow(() -> new IllegalArgumentException("Activity not found with ID: " + reservationDTO.getActivityId())));
-        reservation.setStartTime(reservationDTO.getStartTime());
+        Activity activity = activityRepository.findById(reservationDTO.getActivityId())
+                .orElseThrow(() -> new IllegalArgumentException("Activity not found with ID: " + reservationDTO.getActivityId()));
+        LocalDateTime startTime = reservationDTO.getStartTime();
+
+        // Check for existing reservations with the same activity_id and start_time, excluding the current reservation
+        List<Reservation> existingReservations = reservationRepository.findByActivityIdAndStartTime(activity.getId(), startTime);
+        if (!existingReservations.isEmpty() && existingReservations.stream().anyMatch(r -> r.getId() != id)) {
+            throw new IllegalArgumentException("A reservation already exists for the selected activity at the specified start time.");
+        }
+
+        reservation.setActivity(activity);
+        reservation.setStartTime(startTime);
         reservation.setPartySize(reservationDTO.getPartySize());
         reservation.setUserWithRoles(userWithRolesRepository.findByUsername(reservationDTO.getUserWithRolesUsername()));
         reservation.setCustomerName(reservationDTO.getCustomerName());
         reservation.setCustomerPhone(reservationDTO.getCustomerPhone());
         reservation.setCreated(reservationDTO.getCreated());
         reservation.setEdited(reservationDTO.getEdited());
+
         reservationRepository.save(reservation);
+
         return convertToDTO(reservation);
     }
 
@@ -91,5 +105,4 @@ public class ReservationService {
         dto.setEdited(reservation.getEdited());
         return dto;
     }
-
 }

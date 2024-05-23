@@ -202,8 +202,8 @@ public class InitData implements CommandLineRunner {
 
         for (Reservation reservation : reservations) {
             // Check if a reservation for the same activity already exists
-            Optional<Reservation> existingReservation = reservationRepository.findByActivityAndStartTime(reservation.getActivity(), reservation.getStartTime());
-            if (existingReservation.isEmpty()) {
+            List<Reservation> existingReservations = reservationRepository.findByActivityIdAndStartTime(reservation.getActivity().getId(), reservation.getStartTime());
+            if (existingReservations.isEmpty()) {
                 // If no such reservation exists, save the new one
                 reservationRepository.save(reservation);
             }
