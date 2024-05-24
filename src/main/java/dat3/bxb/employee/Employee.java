@@ -40,7 +40,6 @@ public class Employee {
         BAR,
         @JsonProperty("MAINTENANCE")
         MAINTENANCE,
-
         @JsonProperty("CLEANING")
         CLEANING,
     }
