@@ -28,9 +28,13 @@ public class EmployeeController {
         return employeeService.getEmployeesByEmpType(empType);
     }
 
-
     @PostMapping("/create")
     public EmployeeDTO createEmployee(@RequestBody EmployeeDTO employee) {
         return employeeService.createEmployee(employee);
+    }
+
+    @PatchMapping("/{id}")
+    public EmployeeDTO updateEmployee(@PathVariable int id, @RequestBody EmployeeDTO employee) {
+        return employeeService.updateEmployee(id, employee);
     }
 }

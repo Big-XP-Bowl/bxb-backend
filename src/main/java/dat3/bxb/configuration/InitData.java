@@ -165,6 +165,15 @@ public class InitData implements CommandLineRunner {
         Activity activity = airhockeyRepository.findById(1);
         Activity activity1 = bowlingLaneRepository.findById(7);
         Activity activity2 = diningTableRepository.findById(32);
+        Activity activity3 = airhockeyRepository.findById(2);
+        Activity activity4 = bowlingLaneRepository.findById(8);
+        Activity activity5 = diningTableRepository.findById(33);
+        Activity activity6 = airhockeyRepository.findById(3);
+        Activity activity7 = bowlingLaneRepository.findById(9);
+        Activity activity8 = diningTableRepository.findById(34);
+        Activity activity9 = airhockeyRepository.findById(4);
+        Activity activity10 = bowlingLaneRepository.findById(10);
+        Activity activity11 = diningTableRepository.findById(35);
 
         String username1 = "user1";
 
@@ -185,18 +194,71 @@ public class InitData implements CommandLineRunner {
 
         List<Reservation> reservations = List.of(
                 new Reservation(activity, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity3, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity6, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity9, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity, startTime1, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity3, startTime1, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity6, startTime1, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime1, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime1, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime1, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity, startTime2, 2, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity, startTime3, 2, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime3, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime3, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime3, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime4, 2, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime3, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime4, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime4, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime4, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity3, startTime4, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity6, startTime5, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime5, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime6, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime6, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime6, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime6, 5, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime7, 6, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime6, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime7, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime7, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime7, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity3, startTime7, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity6, startTime8, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime8, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime9, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity3, startTime9, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime9, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime9, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime9, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity6, startTime9, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime9, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime10, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity, startTime10, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity3, startTime10, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime10, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime10, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime10, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity6, startTime10, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
                 new Reservation(activity1, startTime11, 1, userWithRoles, "Sanne Loeb", "42424242", LocalDateTime.now(), LocalDateTime.now()),
-                new Reservation(activity2, startTime, 2, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now())
+                new Reservation(activity, startTime11, 3, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity3, startTime11, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity6, startTime11, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity1, startTime11, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity4, startTime11, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity7, startTime11, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity9, startTime11, 4, userWithRoles, "Hanne Boel", "24242424", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity2, startTime, 2, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity2, startTime1, 4, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity2, startTime2, 6, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity2, startTime3, 8, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity2, startTime4, 2, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now()),
+                new Reservation(activity2, startTime5, 4, userWithRoles, "Hannes Bøhl", "42424242", LocalDateTime.now(), LocalDateTime.now())
 
         );
 
@@ -214,16 +276,16 @@ public class InitData implements CommandLineRunner {
         System.out.println("Creating employees");
 
         List<Employee> employees = List.of(
-                new Employee(Employee.EmpType.MANAGER, "Tove Ditlevsen", "JD", "https://www.shutterstock.com/da/image-photo/headshot-close-portrait-latin-hispanic-confident-2343004129" ),
-                new Employee(Employee.EmpType.MANAGER, "Abdi Mohammed", "AM", "https://www.shutterstock.com/da/image-photo/headshot-portrait-young-adult-confident-smiling-2115297218"),
-                new Employee(Employee.EmpType.BAR, "Hannie Olsen", "HO", "https://www.shutterstock.com/da/image-photo/headshot-portrait-happy-indian-millennial-girl-1529381102"),
-                new Employee(Employee.EmpType.BAR, "Karen Larsen", "KL", "https://www.shutterstock.com/da/image-photo/stylish-confident-adult-50-years-old-1972000787"),
+                new Employee(Employee.EmpType.MANAGER, "Tove Ditlevsen", "JD", "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" ),
+                new Employee(Employee.EmpType.MANAGER, "Abdi Mohammed", "AM", "https://images.pexels.com/photos/1722198/pexels-photo-1722198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1s"),
+                new Employee(Employee.EmpType.BAR, "Hannie Olsen", "HO", "https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                new Employee(Employee.EmpType.BAR, "Karen Larsen", "KL", "https://images.pexels.com/photos/3786525/pexels-photo-3786525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
                 new Employee(Employee.EmpType.BAR, "Mogens Krogh", "HS", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOxEFysJCpJGiUaKyUnDwZxI14edrFaHe7m5ThU87gNQ&s"),
                 new Employee(Employee.EmpType.BAR, "John Faxe", "LL", "https://pbs.twimg.com/profile_images/378800000301376130/581005c77dfaf0e2ff5987209cae3f37_400x400.png"),
-                new Employee(Employee.EmpType.MAINTENANCE, "Sanne Sanger", "SS", "https://www.shutterstock.com/da/image-photo/head-shot-portrait-smart-confident-smiling-1721092123"),
-                new Employee(Employee.EmpType.MAINTENANCE, "Anne Jensen", "AJ", "https://www.shutterstock.com/da/image-photo/happy-millennial-business-woman-glasses-posing-2103373409"),
-                new Employee(Employee.EmpType.CLEANING, "Lone Jensen", "LJ", "https://www.shutterstock.com/da/image-photo/headshot-portrait-happy-ginger-girl-freckles-623804987"),
-                new Employee(Employee.EmpType.CLEANING, "John Smed", "JS", "https://www.shutterstock.com/da/image-photo/black-athlete-fitness-trainer-portrait-muscular-1506106214"),
+                new Employee(Employee.EmpType.MAINTENANCE, "Sanne Sanger", "SS", "https://images.pexels.com/photos/3807770/pexels-photo-3807770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                new Employee(Employee.EmpType.MAINTENANCE, "Anne Jensen", "AJ", "https://images.pexels.com/photos/5384445/pexels-photo-5384445.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                new Employee(Employee.EmpType.CLEANING, "Lone Jensen", "LJ", "https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                new Employee(Employee.EmpType.CLEANING, "John Smed", "JS", "https://images.pexels.com/photos/3777947/pexels-photo-3777947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
                 new Employee(Employee.EmpType.CLEANING, "Craig Larman", "CL", "https://certification.scrumalliance.org/system/members/photos/000/000/056/200x200/craig_larman_-_head_-_square_-_1000_x_1000_-_sept_2017_-_orig_background.png?1543438389"),
                 new Employee(Employee.EmpType.CLEANING, "Linux Thorvalds", "LT", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR2a8LLjkXzYOMMMUVGQES3mrBHRxb5cyHW7DNzxnt7aVRkHItR")
         );
