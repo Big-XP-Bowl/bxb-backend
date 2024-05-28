@@ -50,4 +50,15 @@ public class EmployeeService {
         List<Employee> employees = employeeRepository.findByEmpType(type);
         return employees.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
+
+    public EmployeeDTO updateEmployee(int id, EmployeeDTO employee) {
+        Employee existingEmployee = employeeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Employee not found with ID: " + id));
+        existingEmployee.setEmpType(Employee.EmpType.valueOf(employee.getEmpType()));
+        existingEmployee.setName(employee.getName());
+        existingEmployee.setInitials(employee.getInitials());
+        existingEmployee.setImageUrl(employee.getImageUrl());
+        Employee savedEmployee = employeeRepository.save(existingEmployee); // Save the updated employee
+        return convertToDTO(savedEmployee); // Convert and return the updated employee as DTO
+    }
 }
