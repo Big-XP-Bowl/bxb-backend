@@ -202,8 +202,8 @@ public class InitData implements CommandLineRunner {
 
         for (Reservation reservation : reservations) {
             // Check if a reservation for the same activity already exists
-            Optional<Reservation> existingReservation = reservationRepository.findByActivityAndStartTime(reservation.getActivity(), reservation.getStartTime());
-            if (existingReservation.isEmpty()) {
+            List<Reservation> existingReservations = reservationRepository.findByActivityIdAndStartTime(reservation.getActivity().getId(), reservation.getStartTime());
+            if (existingReservations.isEmpty()) {
                 // If no such reservation exists, save the new one
                 reservationRepository.save(reservation);
             }
@@ -239,70 +239,55 @@ public class InitData implements CommandLineRunner {
     public void createSchedules() {
         System.out.println("Creating schedules");
 
-        // Find employees by their IDs
-        Optional<Employee> employee1Optional = employeeRepository.findById(1);
-        Optional<Employee> employee2Optional = employeeRepository.findById(2);
-        Optional<Employee> employee3Optional = employeeRepository.findById(3);
-        Optional<Employee> employee4Optional = employeeRepository.findById(4);
-        Optional<Employee> employee5Optional = employeeRepository.findById(5);
-        Optional<Employee> employee6Optional = employeeRepository.findById(6);
-        Optional<Employee> employee7Optional = employeeRepository.findById(7);
-        Optional<Employee> employee8Optional = employeeRepository.findById(8);
-        Optional<Employee> employee9Optional = employeeRepository.findById(9);
-        Optional<Employee> employee10Optional = employeeRepository.findById(10);
-        Optional<Employee> employee11Optional = employeeRepository.findById(11);
-        Optional<Employee> employee12Optional = employeeRepository.findById(12);
+        List<Integer> employeeIds = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+        List<Employee> employees = employeeRepository.findAllById(employeeIds);
 
-        // Check if employees exist and create schedules
-        if (employee1Optional.isPresent() && employee2Optional.isPresent() && employee3Optional.isPresent() && employee4Optional.isPresent() && employee5Optional.isPresent() && employee6Optional.isPresent() && employee7Optional.isPresent() && employee8Optional.isPresent() && employee9Optional.isPresent() && employee10Optional.isPresent() && employee11Optional.isPresent() && employee12Optional.isPresent()) {
-            Employee employee1 = employee1Optional.get();
-            Employee employee2 = employee2Optional.get();
-            Employee employee3 = employee3Optional.get();
-            Employee employee4 = employee4Optional.get();
-            Employee employee5 = employee5Optional.get();
-            Employee employee6 = employee6Optional.get();
-            Employee employee7 = employee7Optional.get();
-            Employee employee8 = employee8Optional.get();
-            Employee employee9 = employee9Optional.get();
-            Employee employee10 = employee10Optional.get();
-            Employee employee11 = employee11Optional.get();
-            Employee employee12 = employee12Optional.get();
-
-            List<Schedule> schedules = List.of(
-                    //Morgen1
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee1), // Manager 1
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee3), // Bar 3-6
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee4), // Bar
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee7), // Maintanence 7-8
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee9), // Cleaning 9-12
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employee10),// Cleaning
-                    //Aften1
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee2), // Manager 2
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee5), // Bar 1-2
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee6), // Bar
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee8), // Maintanence 3-6
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee11), // Cleaning 1-2
-                    new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employee12), // Cleaning
-                    //Morgen2
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee1), // Manager 1
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee3), // Bar 3-6
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee4), // Bar
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee7), // Maintanence 7-8
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee9), // Cleaning 9-12
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employee10),// Cleaning
-                    //Aften2
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee2), // Manager 2
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee5), // Bar 1-2
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee6), // Bar
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee8), // Maintanence 3-6
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee11), // Cleaning 1-2
-                    new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employee12) // Cleaning
-
-            );
-
-            scheduleRepository.saveAll(schedules);
-        } else {
+        if (employees.size() != employeeIds.size()) {
             System.out.println("Error: One or more employees not found.");
+            return;
+        }
+
+        List<Schedule> schedules = List.of(
+                // Morning shift on June 8, 2024
+                new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employees.get(0)), // Manager
+                new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employees.get(2)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employees.get(3)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employees.get(6)), // Maintenance
+                new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employees.get(8)), // Cleaning
+                new Schedule(LocalDateTime.of(2024, 6, 8, 9, 0), LocalDateTime.of(2024, 6, 8, 16, 0), employees.get(9)), // Cleaning
+                // Evening shift on June 8, 2024
+                new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employees.get(1)), // Manager
+                new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employees.get(4)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employees.get(5)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employees.get(7)), // Maintenance
+                new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employees.get(10)), // Cleaning
+                new Schedule(LocalDateTime.of(2024, 6, 8, 16, 0), LocalDateTime.of(2024, 6, 8, 23, 0), employees.get(11)), // Cleaning
+                // Morning shift on June 9, 2024
+                new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employees.get(0)), // Manager
+                new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employees.get(2)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employees.get(3)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employees.get(6)), // Maintenance
+                new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employees.get(8)), // Cleaning
+                new Schedule(LocalDateTime.of(2024, 6, 9, 9, 0), LocalDateTime.of(2024, 6, 9, 16, 0), employees.get(9)), // Cleaning
+                // Evening shift on June 9, 2024
+                new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employees.get(1)), // Manager
+                new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employees.get(4)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employees.get(5)), // Bar
+                new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employees.get(7)), // Maintenance
+                new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employees.get(10)), // Cleaning
+                new Schedule(LocalDateTime.of(2024, 6, 9, 16, 0), LocalDateTime.of(2024, 6, 9, 23, 0), employees.get(11))  // Cleaning
+        );
+
+        for (Schedule schedule : schedules) {
+            // Check if the same employee is already scheduled for the same shift
+            if (!scheduleRepository.existsByEmployee_IdAndStartTime(schedule.getEmployee().getId(), schedule.getStartTime())) {
+                // If no such schedule exists, save the new one
+                try {
+                    scheduleRepository.save(schedule);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Validation error: " + e.getMessage());
+                }
+            }
         }
     }
 
