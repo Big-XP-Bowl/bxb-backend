@@ -35,4 +35,10 @@ public class ShoeController {
         shoeService.deleteShoe(id);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/size/{size}")
+    public ResponseEntity<Void> deleteShoeBySize(@PathVariable int size) {
+        shoeService.deleteShoeBySize(size);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -35,6 +35,13 @@ public class ShoeService {
         shoeRepository.deleteById(id);
     }
 
+    public void deleteShoeBySize(int size) {
+        List<Shoe> shoes = shoeRepository.findBySize(size);
+        if (!shoes.isEmpty()) {
+            shoeRepository.delete(shoes.get(0));
+        }
+    }
+
     private ShoeDTO convertToDTO(Shoe shoe) {
         return new ShoeDTO(shoe.getId(), shoe.getSize());
     }
