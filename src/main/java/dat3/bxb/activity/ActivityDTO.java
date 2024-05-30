@@ -18,8 +18,6 @@ public class ActivityDTO {
     private int diningTableNumber;
 
     public void setIsClosed(boolean closed) {
-    }
-
-    public void setIsReserved(boolean reserved) {
+        this.isClosed = closed;
     }
 }

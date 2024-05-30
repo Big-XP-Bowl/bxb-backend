@@ -3,15 +3,14 @@ package dat3.bxb.activity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
 @Entity
 public class Activity {
-    @jakarta.persistence.Id
-    @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private int id;
     private String name;
     private int capacity;
@@ -33,4 +32,12 @@ public class Activity {
         this.duration = duration;
     }
     public Activity(){}
+
+    public void setIsClosed(boolean closed) {
+        this.isClosed = closed;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isClosed = !isOpen;
+    }
 }

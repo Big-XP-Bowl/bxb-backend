@@ -40,7 +40,6 @@ public class ActivityService {
         activityDTO.setCapacity(activity.getCapacity());
         activityDTO.setDuration(activity.getDuration());
         activityDTO.setIsClosed(activity.isClosed());
-        activityDTO.setIsReserved(activity.isReserved());
 
         // Check if the activity is Airhockey, BowlingLane or DiningTable and set additional fields accordingly
         if (activity instanceof Airhockey) {
@@ -55,5 +54,35 @@ public class ActivityService {
         }
 
         return activityDTO;
+    }
+
+    public ActivityDTO updateActivity(int id, ActivityDTO activity) {
+        Activity activityToUpdate = activityRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Activity not found with ID: " + id));
+
+        System.out.println("Updating activity with ID: " + id);
+        System.out.println("Received isClosed value: " + activity.isClosed());
+
+        activityToUpdate.setName(activity.getName());
+        activityToUpdate.setCapacity(activity.getCapacity());
+        activityToUpdate.setDuration(activity.getDuration());
+
+        if (activity.isClosed()) {
+            activityToUpdate.setIsClosed(true);
+        } else {
+            activityToUpdate.setIsOpen(true);
+        }
+
+        // Check if the activity is Airhockey, BowlingLane, or DiningTable and set additional fields accordingly
+        if (activityToUpdate instanceof Airhockey) {
+            ((Airhockey) activityToUpdate).setTableNumber(activity.getTableNumber());
+        } else if (activityToUpdate instanceof BowlingLane) {
+            ((BowlingLane) activityToUpdate).setLaneNumber(activity.getLaneNumber());
+        } else if (activityToUpdate instanceof DiningTable) {
+            ((DiningTable) activityToUpdate).setDiningTableNumber(activity.getDiningTableNumber());
+        }
+
+        activityRepository.save(activityToUpdate);
+        return convertToDTO(activityToUpdate);
     }
 }

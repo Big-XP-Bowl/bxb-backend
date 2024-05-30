@@ -1,9 +1,6 @@
 package dat3.bxb.activity;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,10 @@ public class ActivityController {
     @GetMapping("/type/{activityType}")
     public List<ActivityDTO> getActivitiesByType(@PathVariable String activityType) {
         return activityService.getActivitiesByType(activityType);
+    }
+
+    @PatchMapping ("/{id}")
+    public ActivityDTO updateActivity(@PathVariable int id, @RequestBody ActivityDTO activity) {
+        return activityService.updateActivity(id, activity);
     }
 }
