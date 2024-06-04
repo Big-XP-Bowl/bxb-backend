@@ -47,6 +47,7 @@ public class ActivityService {
             activityDTO.setTableNumber(((Airhockey) activity).getTableNumber());
         } else if (activity instanceof BowlingLane) {
             activityDTO.setType("BowlingLane");
+            activityDTO.setChildFriendly(((BowlingLane) activity).getIsChildFriendly());
             activityDTO.setLaneNumber(((BowlingLane) activity).getLaneNumber());
         } else if (activity instanceof DiningTable) {
             activityDTO.setType("DiningTable");

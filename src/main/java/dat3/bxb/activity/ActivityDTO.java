@@ -16,6 +16,7 @@ public class ActivityDTO {
     private int tableNumber;
     private int laneNumber;
     private int diningTableNumber;
+    private boolean isChildFriendly;
 
     public void setIsClosed(boolean closed) {
         this.isClosed = closed;
